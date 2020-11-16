@@ -30,6 +30,7 @@ jobs:
   ld:
     runs-on: ubuntu-latest
     steps: 
+    - uses: actions/checkout@v2
     - name: LaunchDarkly Code References
       # You may pin to the exact commit or the version.
       # uses: launchdarkly/find-code-references@0ff20f7df8b53bfa155f2df9fd5877afaa2c1005
