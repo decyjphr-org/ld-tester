@@ -14,7 +14,7 @@ const user = {
   };
 
 app.get('/', (req, res) => {
-    ldclient.variation(user.keys[0], user, false, function(err, showFeature) {
+    ldclient.variation('friendly-greeting', user, false, function(err, showFeature) {
         if (showFeature) {
           // application code to show the feature
           console.log('Showing your feature to ' + user.keys[0] );
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
           res.send('Hello World!')
         }
       })
-    ldclient.variation(user.keys[1], user, false, function(err, showFeature) {
+    ldclient.variation('friendly-info', user, false, function(err, showFeature) {
           if (showFeature) {
             // application code to show the feature
             console.log('Showing your feature to ' + user.keys[1] );
@@ -43,7 +43,7 @@ const server=app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
   ldclient.once('ready', function() {
-    ldclient.variation(user.keys[0], user, false, function(err, showFeature) {
+    ldclient.variation('friendly-greeting', user, false, function(err, showFeature) {
       if (showFeature) {
         // application code to show the feature
         console.log('Showing your feature to ' + user.keys[0] );
@@ -51,8 +51,6 @@ const server=app.listen(port, () => {
         // the code to run if the feature is off
         console.log('Not showing your feature to ' + user.keys[0]);
       }
-  
-
     });
   });
   
