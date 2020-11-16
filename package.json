@@ -1,0 +1,22 @@
+{
+  "name": "ld-tester",
+  "version": "1.0.0",
+  "description": "Sample launchdarkly app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decyjphr-org/ld-tester.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/decyjphr-org/ld-tester/issues"
+  },
+  "homepage": "https://github.com/decyjphr-org/ld-tester#readme",
+  "dependencies": {
+    "launchdarkly-node-server-sdk": "^5.13.4"
+  }
+}
