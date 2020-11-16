@@ -26,3 +26,25 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
+      
+    - name: LaunchDarkly Code References
+      # You may pin to the exact commit or the version.
+      # uses: launchdarkly/find-code-references@0ff20f7df8b53bfa155f2df9fd5877afaa2c1005
+      uses: launchdarkly/find-code-references@v8
+      with:
+        # Key of the LaunchDarkly project associated with this repository. Found under Account Settings -> Projects in the LaunchDarkly dashboard.
+        projKey: default
+        # Token with write access to LaunchDarkly project.
+        accessToken: sdk-700ea264-7cf0-4996-b419-b86f54f3e230
+        # Set the base URL of the LaunchDarkly server for this configuration.
+        baseUri: # optional, default is https://app.launchdarkly.com
+        # The number of context lines above and below a code reference for the job to send to LaunchDarkly. By default, the flag finder will not send any context lines to LaunchDarkly. If < 0, no source code will be sent to LaunchDarkly. If 0, only the lines containing flag references will be sent. If > 0, will send that number of context lines above and below the flag reference. A maximum of 5 context lines may be provided.
+        #contextLines: # optional, default is 2
+        # Enables verbose debug logging.
+        #debug: # optional
+        # If enabled, the scanner will terminate with exit code 0 when the LaunchDarkly API is unreachable or returns an unexpected response.
+        #ignoreServiceErrors: # optional
+        # Sets the number of Git commits to search in history for whether a feature flag was removed from code. May be set to 0 to disabled this feature. Setting this option to a high value will increase search time.
+        #lookback: # optional, default is 10
+        # Token to access your GitHub repository. This is only needed if the code has not yet been checkout out in a prior step.
+        #githubToken: # optional
