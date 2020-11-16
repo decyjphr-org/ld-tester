@@ -7,26 +7,35 @@ console.log('Initializing ldclient. Show feature:' +ldclient );
 const user = {
     firstName: 'Bob',
     lastName: 'Loblaw',
-    key: 'friendly-greeting',
+    keys: ['friendly-greeting','friendly-info'],
     custom: {
       groups: 'beta_testers'
     }
   };
 
 app.get('/', (req, res) => {
-    ldclient.variation('friendly-greeting', user, false, function(err, showFeature) {
+    ldclient.variation(user.keys[0], user, false, function(err, showFeature) {
         if (showFeature) {
           // application code to show the feature
-          console.log('Showing your feature to ' + user.key );
+          console.log('Showing your feature to ' + user.keys[0] );
           res.send(`Hello ${user.firstName} ${user.lastName}!`)
         } else {
           // the code to run if the feature is off
-          console.log('Not showing your feature to ' + user.key);
+          console.log('Not showing your feature to ' + user.keys[0]);
           res.send('Hello World!')
         }
-    
-  
-      });
+      })
+    ldclient.variation(user.keys[1], user, false, function(err, showFeature) {
+          if (showFeature) {
+            // application code to show the feature
+            console.log('Showing your feature to ' + user.keys[1] );
+            res.send(`Today is Monday!`)
+          } else {
+            // the code to run if the feature is off
+            console.log('Not showing your feature to ' + user.keys[1]);
+            res.send('Nothing to show!')
+          }
+      })
       
 })
 
@@ -34,13 +43,13 @@ const server=app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
   ldclient.once('ready', function() {
-    ldclient.variation('friendly-greeting', user, false, function(err, showFeature) {
+    ldclient.variation(user.keys[0], user, false, function(err, showFeature) {
       if (showFeature) {
         // application code to show the feature
-        console.log('Showing your feature to ' + user.key );
+        console.log('Showing your feature to ' + user.keys[0] );
       } else {
         // the code to run if the feature is off
-        console.log('Not showing your feature to ' + user.key);
+        console.log('Not showing your feature to ' + user.keys[0]);
       }
   
 
